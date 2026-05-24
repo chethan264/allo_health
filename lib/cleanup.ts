@@ -1,5 +1,4 @@
 import prisma from './db';
-import { Prisma } from '@prisma/client';
 
 /**
  * Automatically identifies all PENDING reservations that have passed their expiration
@@ -8,7 +7,7 @@ import { Prisma } from '@prisma/client';
  * 
  * If a Prisma Transaction client (tx) is provided, the queries will execute within that transaction.
  */
-export async function cleanupExpiredReservations(tx?: Prisma.TransactionClient) {
+export async function cleanupExpiredReservations(tx?: any) {
   const client = tx || prisma;
   
   const now = new Date();
