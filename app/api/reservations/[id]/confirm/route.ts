@@ -30,7 +30,7 @@ export async function POST(
     await cleanupExpiredReservations();
 
     // 3. Confirm the reservation inside a transaction to prevent race conditions
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       // Find the specific reservation
       const reservation = await tx.reservation.findUnique({
         where: { id },

@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     const { productId, warehouseId, quantity } = result.data;
 
     // Execute the reservation process inside a database transaction to ensure absolute atomic safety
-    const reservationResult = await prisma.$transaction(async (tx) => {
+    const reservationResult = await prisma.$transaction(async (tx: any) => {
       // a. First, run lazy cleanup of expired reservations to reclaim available units
       await cleanupExpiredReservations(tx);
 
