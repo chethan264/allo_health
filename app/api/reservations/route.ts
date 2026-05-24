@@ -3,7 +3,6 @@ import prisma from '@/lib/db';
 import { cleanupExpiredReservations } from '@/lib/cleanup';
 import { getCachedResponse, cacheResponse } from '@/lib/idempotency';
 import { z } from 'zod';
-import { StockLevel } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,7 +43,7 @@ export async function POST(request: Request) {
 
       // b. Lock the corresponding StockLevel row using pessimistic locking (FOR UPDATE)
       // This blocks concurrent requests from modifying or reading the stock level of this specific product/warehouse combo
-      const stockLevels: StockLevel[] = await tx.$queryRaw`
+      const stockLevels: any[] = await tx.$queryRaw`
         SELECT * FROM "StockLevel"
         WHERE "productId" = ${productId} AND "warehouseId" = ${warehouseId}
         FOR UPDATE
