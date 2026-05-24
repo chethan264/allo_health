@@ -25,12 +25,12 @@ export async function GET() {
       });
 
       // 3. Format the data for a premium frontend experience, computing available units
-      return products.map((product) => ({
+      return products.map((product: any) => ({
         id: product.id,
         name: product.name,
         description: product.description,
         price: product.price,
-        stockLevels: product.stockLevels.map((sl) => ({
+        stockLevels: product.stockLevels.map((sl: any) => ({
           warehouseId: sl.warehouseId,
           warehouseName: sl.warehouse.name,
           totalUnits: sl.totalUnits,
