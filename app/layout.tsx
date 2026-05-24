@@ -73,7 +73,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t border-white/5 py-6 px-6 md:px-12 text-center text-xs text-slate-500 bg-slate-950/20">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p>&copy; 2026 Allo Health Inc. - Engineering Take-Home Assignment. All rights reserved.</p>
+            <p>&copy; 2026 Allo Health Inc. Premium Digital Pharmacy & Wellness. All rights reserved.</p>
             <div className="flex space-x-6">
               <a href="#" className="hover:text-slate-400 transition-colors">System status</a>
               <a href="#" className="hover:text-slate-400 transition-colors">Terms of service</a>

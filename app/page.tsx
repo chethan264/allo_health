@@ -174,42 +174,33 @@ export default function HomePage() {
 
       {/* Hero Welcome banner */}
       <section className="text-center py-6 md:py-10 max-w-4xl mx-auto space-y-6">
-        <div className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider">
-          <Sparkles className="h-3.5 w-3.5" />
-          <span>ON-CAMPUS DRIVE PROJECT SHOWCASE</span>
+        <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase">
+          <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+          <span>CLINICALLY FORMULATED • DISPATCHED SECURELY</span>
         </div>
         <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
-          High-Concurrency <br/>
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
-            Inventory Hold Engine
+          Allo Health <br/>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-indigo-400">
+            Premium Wellness Store
           </span>
         </h1>
         <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
-          Select products, select a fulfillment warehouse, and acquire temporary 10-minute checkout locks protected by atomic PostgreSQL database pessimistic write-row locks.
+          Order highly specialized vitality formulas, daily multivitamins, and medical-grade wellness formulations. 
+          Stock is secured in real-time from our regional fulfillment centers for up to 10 minutes at checkout to protect your order priority.
         </p>
 
-        {/* Demo controls Panel */}
+        {/* Catalog Control Panel */}
         <div className="flex flex-wrap justify-center gap-4 pt-4">
           <button 
             onClick={() => {
               setLoading(true);
               fetchProducts();
             }}
-            className="flex items-center space-x-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-white/5 py-2.5 px-4 rounded-xl transition-all"
+            className="flex items-center space-x-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-white/5 py-2.5 px-5 rounded-xl transition-all shadow-md hover:shadow-indigo-500/5 active:scale-95"
             id="refresh-catalog-btn"
           >
-            <RefreshCw className="h-4 w-4" />
-            <span>Refresh Inventory</span>
-          </button>
-          
-          <button 
-            onClick={runCron}
-            disabled={cronRunning}
-            className="flex items-center space-x-2 text-xs font-semibold text-white bg-indigo-600/90 hover:bg-indigo-600 border border-indigo-500/30 py-2.5 px-4 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-indigo-500/15"
-            id="run-cron-btn"
-          >
-            <Layers className="h-4 w-4" />
-            <span>{cronRunning ? 'Releasing Expired...' : 'Trigger Background Expiry Cron'}</span>
+            <RefreshCw className="h-4 w-4 text-emerald-400" />
+            <span>Refresh Store Catalog</span>
           </button>
         </div>
       </section>
@@ -367,6 +358,24 @@ export default function HomePage() {
           })}
         </div>
       )}
+
+      {/* Floating Diagnostics Control (Discreet developer bypass at bottom right) */}
+      <div className="fixed bottom-6 right-6 z-40">
+        <div className="group relative">
+          <button 
+            onClick={runCron}
+            disabled={cronRunning}
+            className="flex items-center justify-center h-12 w-12 rounded-full bg-slate-900 hover:bg-slate-800 border border-white/10 hover:border-emerald-500/40 text-slate-400 hover:text-emerald-400 transition-all shadow-2xl active:scale-95 cursor-pointer"
+            title="Trigger Expiry Cron (Developer Diagnostic)"
+            id="run-cron-btn"
+          >
+            <Layers className={`h-5 w-5 ${cronRunning ? 'animate-spin' : ''}`} />
+          </button>
+          <div className="absolute right-14 bottom-1 bg-slate-900 border border-white/10 rounded-lg py-2 px-3 whitespace-nowrap text-[10px] text-slate-300 font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-2xl">
+            {cronRunning ? 'Releasing Expired Holds...' : 'Run Diagnostics Expiry Cron'}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
